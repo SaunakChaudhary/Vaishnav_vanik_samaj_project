@@ -20,7 +20,7 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/events/display');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
         const data = await response.json();
         if (response.ok) {
           setEventsData(data.events || []);
@@ -40,7 +40,7 @@ const Events = () => {
       if (!LoggedInUser?._id) return;
 
       try {
-        const response = await fetch('http://localhost:5000/api/events/event-registration-members');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/event-registration-members`);
         const data = await response.json();
         if (response.ok) {
           const userRegisteredEvents = data.registrations
@@ -125,7 +125,7 @@ const Events = () => {
                 <div key={event._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                   <div className="h-48 sm:h-56 w-full overflow-hidden">
                     <img
-                      src={"http://localhost:5000" + event.eventPhoto}
+                      src={`${process.env.REACT_APP_API_URL}` + event.eventPhoto}
                       alt={event.eventName}
                       className="h-full w-full object-cover"
                       onError={(e) => {

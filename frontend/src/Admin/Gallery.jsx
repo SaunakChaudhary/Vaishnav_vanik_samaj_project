@@ -22,7 +22,7 @@ const EventGalleryApp = () => {
         const fetchEvents = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch("http://localhost:5000/api/events/display");
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
                 const data = await response.json();
                 if (response.ok) {
                     setEvents(data.events);
@@ -80,7 +80,7 @@ const EventGalleryApp = () => {
                         formData.append('images', file);
                     });
 
-                    const response = await fetch(`http://localhost:5000/api/events/upload-images`, {
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/upload-images`, {
                         method: 'POST',
                         body: formData,
                     });
@@ -109,7 +109,7 @@ const EventGalleryApp = () => {
     const handleDeleteImages = async (gallery, eventId, imageUrls) => {
         setIsLoading(true);
         try {
-            const response = await fetch(`http://localhost:5000/api/events/delete-images`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/delete-images`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -236,7 +236,7 @@ const EventGalleryApp = () => {
                                                 .map((img, idx) => (
                                                     <img
                                                         key={idx}
-                                                        src={img.charAt(0) === "/" ? "http://localhost:5000" + img : img}
+                                                        src={img.charAt(0) === "/" ? `${process.env.REACT_APP_API_URL}` + img : img}
                                                         alt={`Event ${event.eventName} photo ${idx + 1}`}
                                                         className="w-full h-20 object-cover rounded"
                                                     />
@@ -394,7 +394,7 @@ const EventGalleryApp = () => {
                                                     onClick={() => isSelectionMode && toggleImageSelection(img)}
                                                 >
                                                     <img
-                                                        src={img.charAt(0) === "/" ? "http://localhost:5000" + img : img}
+                                                        src={img.charAt(0) === "/" ? `${process.env.REACT_APP_API_URL}` + img : img}
                                                         alt={`Photo ${index + 1}`}
                                                         className="w-full h-40 object-cover"
                                                     />

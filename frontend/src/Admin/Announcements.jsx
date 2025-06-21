@@ -13,7 +13,7 @@ const Announcements = () => {
 
     const fetchAnnouncements = async () => {
         try {
-            const res = await fetch("http://localhost:5000/api/announcements/get");
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/announcements/get`);
             const data = await res.json();
             setAnnouncements(data.reverse());
         } catch (err) {
@@ -30,7 +30,7 @@ const Announcements = () => {
         setIsLoading(true);
 
         try {
-            const res = await fetch("http://localhost:5000/api/announcements/create", {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/announcements/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message }),

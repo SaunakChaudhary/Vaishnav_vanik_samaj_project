@@ -16,7 +16,7 @@ export default function AdminPanel() {
   const fetchSlots = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/advertisement/admin/ad-price");
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/admin/ad-price`);
       const data = await res.json();
       if (data.success) {
         setSlots(data.slots);
@@ -34,7 +34,7 @@ export default function AdminPanel() {
   const fetchFees = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/advertisement/admin/get-ad-fees");
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/admin/get-ad-fees`);
       const data = await res.json();
       if (data.success) {
         setFees(data.fees);
@@ -52,7 +52,7 @@ export default function AdminPanel() {
   const updatePrice = async (side, newPrice) => {
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/advertisement/admin/set-price", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/admin/set-price`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ side, pricePerDay: newPrice }),

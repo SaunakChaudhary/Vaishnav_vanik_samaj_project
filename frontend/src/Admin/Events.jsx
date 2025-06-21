@@ -54,7 +54,7 @@ const AdminEvents = () => {
   useEffect(() => {
     const dispEvents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/events/display');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
         const data = await response.json();
         if (response.ok) {
           setEvents(data.events);
@@ -84,7 +84,7 @@ const AdminEvents = () => {
     data.append('feesForExtraGuest', formData.feesForExtraGuest);
 
     try {
-      const res = await fetch('http://localhost:5000/api/events/add', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events/add`, {
         method: 'POST',
         body: data,
       });
@@ -146,7 +146,7 @@ const AdminEvents = () => {
     data.append('feesForExtraGuest', formData1.feesForExtraGuest);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/events/update/${selectedEventId}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events/update/${selectedEventId}`, {
         method: 'PUT',
         body: data
       });
@@ -170,7 +170,7 @@ const AdminEvents = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this event?");
     if (confirmDelete) {
       try {
-        const response = await fetch(`http://localhost:5000/api/events/delete/${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/delete/${id}`, {
           method: 'DELETE'
         });
         const data = await response.json();

@@ -5,7 +5,7 @@ const Contributions = () => {
     const [contributions, setContribution] = useState([]);
     const { LoggedInUser } = useContext(UserDataContext);
     const fetchDashboard = async () => {
-        const response = await fetch(`http://localhost:5000/api/auth/userDashobard/${LoggedInUser._id}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/userDashobard/${LoggedInUser._id}`);
         const data = await response.json();
         if (response.ok) {
             setContribution(data.contributions)

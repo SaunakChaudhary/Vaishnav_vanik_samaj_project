@@ -43,7 +43,7 @@ export default function SamajDonationPage() {
     };
 
     const addToDatabase = async (transactionId) => {
-        const response = await fetch("http://localhost:5000/api/donation/donate-amount", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/donation/donate-amount`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ export default function SamajDonationPage() {
             }
 
             // Step 1: Create Razorpay Order
-            const response = await fetch('http://localhost:5000/api/payment/create-order', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ export default function SamajDonationPage() {
                 name: "Vaishnav Vanik Samaaj",
                 description: "Thank you for your generous donation to support our community initiatives. Your contribution helps us serve and strengthen our Samaj.",
                 handler: async (response) => {
-                    const verifyRes = await fetch('http://localhost:5000/api/payment/verify-payment', {
+                    const verifyRes = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/verify-payment`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

@@ -29,7 +29,7 @@ const AdminManagementSelection = () => {
         const fetchUserDetails = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch("http://localhost:5000/api/members/display");
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
                 const data = await response.json();
                 if (response.ok) {
                     const allUsers = data.membersDetails.filter(mem => mem.membershipFees.isPaid === true);
@@ -149,7 +149,7 @@ const AdminManagementSelection = () => {
         setIsLoading(true);
         try {
             const newFormat = transformToRolesFormat(executivePositions, boardMembers);
-            const response = await fetch("http://localhost:5000/api/members/assign-designation", {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/assign-designation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -321,7 +321,7 @@ const AdminManagementSelection = () => {
                                         <div className="flex items-start justify-between">
                                             <div className="flex items-center gap-3">
                                                 <img 
-                                                    src={"http://localhost:5000" + user.photo} 
+                                                    src={`${process.env.REACT_APP_API_URL}` + user.photo} 
                                                     alt="Profile" 
                                                     className="w-12 h-12 rounded-full object-cover"
                                                 />
@@ -472,7 +472,7 @@ const AdminManagementSelection = () => {
                                         {user ? (
                                             <div className="flex items-center gap-3">
                                                 <img 
-                                                    src={"http://localhost:5000" + user.photo} 
+                                                    src={`${process.env.REACT_APP_API_URL}` + user.photo} 
                                                     alt="Profile" 
                                                     className="w-10 h-10 rounded-full object-cover"
                                                 />
@@ -500,7 +500,7 @@ const AdminManagementSelection = () => {
                                     <div key={memberId} className="border border-gray-200 rounded-lg p-4 hover:shadow-md">
                                         <div className="flex items-center gap-3">
                                             <img 
-                                                src={"http://localhost:5000" + user.photo} 
+                                                src={`${process.env.REACT_APP_API_URL}` + user.photo} 
                                                 alt="Profile" 
                                                 className="w-10 h-10 rounded-full object-cover"
                                             />

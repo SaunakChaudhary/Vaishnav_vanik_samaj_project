@@ -12,7 +12,7 @@ const ProtectedUser = ({ children }) => {
 
     const getUserData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/get-user', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/get-user`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

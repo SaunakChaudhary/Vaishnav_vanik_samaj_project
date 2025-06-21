@@ -34,7 +34,7 @@ const UserDetailComponent = ({ user, setUserDetails }) => {
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
           <div className="flex-shrink-0">
             <img
-              src={"http://localhost:5000" + userData.photo}
+              src={`${process.env.REACT_APP_API_URL}` + userData.photo}
               alt={`${userData.firstName} ${userData.lastName}`}
               className="w-32 h-32 rounded-full object-cover border-4 border-blue-100"
             />
@@ -154,8 +154,8 @@ const UserDetailComponent = ({ user, setUserDetails }) => {
                   <div className="flex items-center gap-3 mb-3">
                     {member.photo && (
                       <img
-                        src={"http://localhost:5000" + member.photo}
-                        alt={"http://localhost:5000" + member.fullName}
+                        src={`${process.env.REACT_APP_API_URL}` + member.photo}
+                        alt={`${process.env.REACT_APP_API_URL}` + member.fullName}
                         className="w-12 h-12 rounded-full object-cover"
                       />
                     )}

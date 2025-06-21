@@ -48,7 +48,7 @@ const EventRegistrationForm = ({ setEventsDetails, eventDetails, onRegistrationS
         const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
         try {
-            const response = await fetch('http://localhost:5000/api/events/event-registration', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/event-registration`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const EventRegistrationForm = ({ setEventsDetails, eventDetails, onRegistrationS
         e.preventDefault();
         try {
             // Step 1: Create Razorpay Order
-            const response = await fetch('http://localhost:5000/api/payment/create-order', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-order`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ const EventRegistrationForm = ({ setEventsDetails, eventDetails, onRegistrationS
                 name: "Vaishnav Vanik Aamaaj",
                 description: "",
                 handler: async (response) => {
-                    const verifyRes = await fetch('http://localhost:5000/api/payment/verify-payment', {
+                    const verifyRes = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/verify-payment`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

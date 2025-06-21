@@ -22,7 +22,7 @@ const Notifications = ({ setActiveTab = () => {} }) => {
 
   useEffect(() => {
     const fetchToDaysBirthday = async () => {
-      const response = await fetch('http://localhost:5000/api/birthday/today-birthday');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/birthday/today-birthday`);
       const data = await response.json();
       if (response.ok) setUsers(data);
       setLoading(false);
@@ -120,7 +120,7 @@ const Notifications = ({ setActiveTab = () => {} }) => {
                     <div className="flex items-center space-x-4">
                       <div className="relative">
                         <img
-                          src={"http://localhost:5000" +user.photo}
+                          src={`${process.env.REACT_APP_API_URL}` +user.photo}
                           alt={user.firstName}
                           className="w-16 h-16 rounded-full border-4 border-white shadow object-cover"
                         />

@@ -39,7 +39,7 @@ const Inquiry = () => {
         const displayMessages = async () => {
             setIsLoading(true);
             try {
-                const response = await fetch("http://localhost:5000/api/contact/display-messages");
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact/display-messages`);
                 const data = await response.json();
                 if (response.ok) {
                     setInquiries(data);
@@ -86,7 +86,7 @@ const Inquiry = () => {
         setIsReplying(true);
 
         try {
-            const response = await fetch('http://localhost:5000/api/contact/reply-inquiry', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact/reply-inquiry`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

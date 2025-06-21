@@ -20,7 +20,7 @@ const UserDashboard = ({ setActiveTab }) => {
 
     useEffect(() => {
         const fetchDashboard = async () => {
-            const response = await fetch(`http://localhost:5000/api/auth/userDashobard/${LoggedInUser._id}`);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/userDashobard/${LoggedInUser._id}`);
             const data = await response.json();
             if (response.ok) {
                 setRegisteredEvents(data.registeredEvents);
@@ -40,7 +40,7 @@ const UserDashboard = ({ setActiveTab }) => {
 
     useEffect(() => {
         const fetchResponse = async () => {
-            const response = await fetch("http://localhost:5000/api/birthday/today-birthday");
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/birthday/today-birthday`);
             const data = await response.json();
             if (response.ok) {
                 setUsers(data);
@@ -152,7 +152,7 @@ const UserDashboard = ({ setActiveTab }) => {
                                                 {ad.image && (
                                                     <div className="w-full md:w-1/4 h-40 rounded-lg overflow-hidden">
                                                         <img
-                                                            src={"http://localhost:5000" + ad.image}
+                                                            src={`${process.env.REACT_APP_API_URL}` + ad.image}
                                                             alt={`Advertisement for ${ad.side}`}
                                                             className="w-full h-full object-cover"
                                                             onError={(e) => {
@@ -264,7 +264,7 @@ const UserDashboard = ({ setActiveTab }) => {
                                             <div className="flex items-center space-x-6 flex-1 min-w-0 w-full">
                                                 <div className="relative">
                                                     <img
-                                                        src={"http://localhost:5000" +user.photo || '/default-avatar.png'}
+                                                        src={`${process.env.REACT_APP_API_URL}` +user.photo || '/default-avatar.png'}
                                                         alt={user.firstName}
                                                         className="w-12 h-12 rounded-full object-cover"
                                                         onError={(e) => {
@@ -350,7 +350,7 @@ const UserDashboard = ({ setActiveTab }) => {
                                     {latestEvent.images1.map((img, index) => (
                                         <img
                                             key={index}
-                                            src={"http://localhost:5000" +img}
+                                            src={`${process.env.REACT_APP_API_URL}` +img}
                                             alt={`Event image ${index + 1}`}
                                             className="h-[300px] object-cover rounded-lg"
                                         />
@@ -399,7 +399,7 @@ const EventCard = ({ title, date, location, registered, image }) => {
             <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden">
                 {image ? (
                     <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center">
-                        <img src={"http://localhost:5000" + image} alt="Event Photo" className='w-full h-full' />
+                        <img src={`${process.env.REACT_APP_API_URL}` + image} alt="Event Photo" className='w-full h-full' />
                     </div>
                 ) : (
                     <div className="w-full h-full bg-gray-100 flex items-center justify-center">

@@ -123,7 +123,7 @@ const Navbar = () => {
                       className="flex items-center space-x-3 px-4 py-2.5 group"
                     >
                       <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        <img src={"http://localhost:5000" + LoggedInUser.photo} alt="ProfilePhoto" className='rounded-full w-8 h-8' />
+                        <img src={`${process.env.REACT_APP_API_URL}` + LoggedInUser.photo} alt="ProfilePhoto" className='rounded-full w-8 h-8' />
                       </div>
                       <span className="font-medium text-gray-800 group-hover:text-amber-800">
                         {LoggedInUser.firstName} {LoggedInUser.lastName}

@@ -136,7 +136,7 @@ const MeetingManagement = () => {
     const fetchMeetings = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/meeting/display');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/display`);
             const data = await response.json();
             setMeetings(data);
         } catch (error) {
@@ -155,7 +155,7 @@ const MeetingManagement = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5000/api/meeting/create', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -178,7 +178,7 @@ const MeetingManagement = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch(`http://localhost:5000/api/meeting/update/${editingMeeting._id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/update/${editingMeeting._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
@@ -205,7 +205,7 @@ const MeetingManagement = () => {
                 formData.append('pdf', file);
             });
 
-            const response = await fetch(`http://localhost:5000/api/meeting/upload/${meetingId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/upload/${meetingId}`, {
                 method: 'PUT',
                 body: formData
             });
@@ -221,7 +221,7 @@ const MeetingManagement = () => {
     // Delete document
     const handleDeleteDocument = async (meetingId, fileUrl) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/meeting/delete-pdf/${meetingId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/delete-pdf/${meetingId}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ fileUrl })
@@ -238,7 +238,7 @@ const MeetingManagement = () => {
     // Download document
     const handleDownloadDocument = async (fileUrl, fileName) => {
         try {
-            const response = await fetch("http://localhost:5000" + fileUrl);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}` + fileUrl);
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -256,7 +256,7 @@ const MeetingManagement = () => {
     // View document
     const handleViewDocument = (fileUrl, fileName) => {
         setViewingPdf({
-            url: "http://localhost:5000" + fileUrl,
+            url: `${process.env.REACT_APP_API_URL}` + fileUrl,
             name: fileName || 'Document'
         });
     };
