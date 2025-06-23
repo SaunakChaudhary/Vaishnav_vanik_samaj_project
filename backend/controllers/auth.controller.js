@@ -237,10 +237,8 @@ const Login = async (req, res) => {
         .status(400)
         .json({ message: "Please provide email and password" });
     }
-
     if (
-      email === process.env.ADMIN_EMAIL &&
-      password === process.env.ADMIN_PASSWORD
+      email === process.env.ADMIN_EMAIL 
     ) {
       // Compare password
       const isPasswordValid = await bcrypt.compare(
