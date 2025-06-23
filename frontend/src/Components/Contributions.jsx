@@ -5,7 +5,7 @@ const Contributions = () => {
     const [contributions, setContribution] = useState([]);
     const { LoggedInUser } = useContext(UserDataContext);
     const fetchDashboard = async () => {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/userDashobard/${LoggedInUser._id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/userDashobard/${LoggedInUser._id}`);
         const data = await response.json();
         if (response.ok) {
             setContribution(data.contributions)

@@ -22,7 +22,7 @@ const Notifications = ({ setActiveTab = () => {} }) => {
 
   useEffect(() => {
     const fetchToDaysBirthday = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/birthday/today-birthday`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/birthday/today-birthday`);
       const data = await response.json();
       if (response.ok) setUsers(data);
       setLoading(false);
@@ -31,19 +31,13 @@ const Notifications = ({ setActiveTab = () => {} }) => {
     fetchToDaysBirthday();
   }, []);
 
-  const getBirthdayUsers = () => {
-    return users.filter((user) => {
-      return (
-        user._id === LoggedInUser._id
-      );
-    });
-  };
 
   const isMyBirthday = () => {
     const today = new Date();
     const dob = new Date(LoggedInUser.dob);
     return dob.getDate() === today.getDate() && dob.getMonth() === today.getMonth();
   };
+  
 
   const generateWhatsAppMessage = (user) => {
     return `*Happy Birthday ${user.firstName} ${user.lastName}!* \n\nWishing you a day filled with joy, success, and blessings.\n\nWarm regards,\n${LoggedInUser.firstName} ${LoggedInUser.lastName}\n*Vaishnav Vanik Samaaj*`;
@@ -60,9 +54,8 @@ const Notifications = ({ setActiveTab = () => {} }) => {
     if (user.phone) window.location.href = `tel:${user.phone}`;
     else alert('Phone number not available');
   };
-
-  const birthdayUsers = getBirthdayUsers();
-
+  
+  const birthdayUsers = users
   return (
     <div className="min-h-screen bg-slate-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
@@ -120,7 +113,7 @@ const Notifications = ({ setActiveTab = () => {} }) => {
                     <div className="flex items-center space-x-4">
                       <div className="relative">
                         <img
-                          src={`${process.env.REACT_APP_API_URL}` +user.photo}
+                          src={`${import.meta.env.VITE_API_URL}` +user.photo}
                           alt={user.firstName}
                           className="w-16 h-16 rounded-full border-4 border-white shadow object-cover"
                         />

@@ -10,7 +10,7 @@ const Gallery = () => {
   }, []);
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events/display`);
       const data = await response.json();
       if (response.ok) {
         setGalleryData(data.events);
@@ -35,7 +35,7 @@ const Gallery = () => {
               {section.images1.map((photo, idx) => (
                 <img
                   key={idx}
-                  src={`${process.env.REACT_APP_API_URL}` + photo}
+                  src={`${import.meta.env.VITE_API_URL}` + photo}
                   alt={`${section.eventName} ${idx + 1}`}
                   className="rounded-lg shadow-lg object-cover h-60 w-full hover:scale-105 transition duration-300"
                 />

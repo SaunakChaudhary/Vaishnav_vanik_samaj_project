@@ -18,7 +18,7 @@ const Homepage = () => {
     useEffect(() => {
         const fetchMembers = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -42,7 +42,7 @@ const Homepage = () => {
     useEffect(() => {
         const fetchAds = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/available`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/advertisement/available`);
                 const data = await response.json();
                 if (response.ok) setAd(data);
             } catch (err) {
@@ -97,7 +97,7 @@ const Homepage = () => {
     useEffect(() => {
         const dispEvents = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events/display`);
                 const data = await response.json();
                 if (response.ok) {
                     const currentDate = new Date();
@@ -168,7 +168,7 @@ const Homepage = () => {
                     {members.map((leader) => (
                         <div key={leader._id} className="text-center">
                             <img
-                                src={`${process.env.REACT_APP_API_URL}` + leader.photo}
+                                src={`${import.meta.env.VITE_API_URL}` + leader.photo}
                                 alt={leader.firstName}
                                 className="w-40 h-40 mx-auto rounded-full object-cover shadow-lg mb-4 border-4 border-gray-200"
                             />
@@ -231,7 +231,7 @@ const Homepage = () => {
                         <div className="relative rounded-2xl overflow-hidden group">
                             <div className="aspect-[16/5] w-full">
                                 <img
-                                    src={`${process.env.REACT_APP_API_URL}` + ad.find(a => a.side === "top" && a.status === "Booked")?.image}
+                                    src={`${import.meta.env.VITE_API_URL}` + ad.find(a => a.side === "top" && a.status === "Booked")?.image}
                                     alt="Advertisement"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -294,7 +294,7 @@ const Homepage = () => {
                         <div className="relative rounded-2xl overflow-hidden group">
                             <div className="aspect-[16/5] w-full">
                                 <img
-                                    src={`${process.env.REACT_APP_API_URL}` + ad.find(a => a.side === "middle" && a.status === "Booked")?.image}
+                                    src={`${import.meta.env.VITE_API_URL}` + ad.find(a => a.side === "middle" && a.status === "Booked")?.image}
                                     alt="Advertisement"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -383,7 +383,7 @@ const Homepage = () => {
                         <div className="relative rounded-2xl overflow-hidden group">
                             <div className="aspect-[16/5] w-full">
                                 <img
-                                    src={`${process.env.REACT_APP_API_URL}` + ad.find(a => a.side === "bottom" && a.status === "Booked")?.image}
+                                    src={`${import.meta.env.VITE_API_URL}` + ad.find(a => a.side === "bottom" && a.status === "Booked")?.image}
                                     alt="Advertisement"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                                 />

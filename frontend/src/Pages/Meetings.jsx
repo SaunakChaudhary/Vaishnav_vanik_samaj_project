@@ -16,7 +16,7 @@ const UserMeetings = () => {
     useEffect(() => {
         const fetchMeetings = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/meeting/display`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/meeting/display`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch meetings');
                 }
@@ -40,7 +40,7 @@ const UserMeetings = () => {
 
     const handleDownload = async (fileUrl) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}` + fileUrl);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}` + fileUrl);
             const blob = await response.blob();
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -219,7 +219,7 @@ const UserMeetings = () => {
                                                                 <button
                                                                     onClick={(e) => {
                                                                         e.stopPropagation();
-                                                                        window.open(`${process.env.REACT_APP_API_URL}` + file, '_blank');
+                                                                        window.open(`${import.meta.env.VITE_API_URL}` + file, '_blank');
                                                                     }}
                                                                     className="p-1.5 text-blue-600 hover:text-blue-800 rounded-md hover:bg-blue-50 transition-colors"
                                                                     title="View"

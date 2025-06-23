@@ -20,7 +20,7 @@ const Members = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
         const data = await response.json();
         if (response.ok) {
           setMembers(data.membersDetails);
@@ -58,7 +58,7 @@ const Members = () => {
   const handleApprove = async (id, status) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/status-update/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/status-update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -69,7 +69,7 @@ const Members = () => {
       if (response.ok) {
         toast.success(data.message);
         // Refresh members after status update
-        const updatedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+        const updatedResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
         const updatedData = await updatedResponse.json();
         if (updatedResponse.ok) {
           setMembers(updatedData.membersDetails);
@@ -94,7 +94,7 @@ const Members = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/export/upload-excel`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/export/upload-excel`, {
         method: "POST",
         body: formData,
       });
@@ -107,7 +107,7 @@ const Members = () => {
       toast.success(data.message || "Excel uploaded successfully");
       
       // Refresh members after upload
-      const updatedResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+      const updatedResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
       const updatedData = await updatedResponse.json();
       if (updatedResponse.ok) {
         setMembers(updatedData.membersDetails);
@@ -124,9 +124,9 @@ const Members = () => {
   const handleDownload = async (type) => {
     setShowOptions(false);
     if (type === "excel") {
-      window.open(`${process.env.REACT_APP_API_URL}/api/export/download/excel`);
+      window.open(`${import.meta.env.VITE_API_URL}/api/export/download/excel`);
     } else if (type === "pdf") {
-      window.open(`${process.env.REACT_APP_API_URL}/api/export/download/pdf`);
+      window.open(`${import.meta.env.VITE_API_URL}/api/export/download/pdf`);
     }
   };
 
@@ -266,7 +266,7 @@ const Members = () => {
                       <td className="px-4 py-4 whitespace-nowrap">
                         <div className="flex-shrink-0 h-10 w-10">
                           <img
-                            src={`${process.env.REACT_APP_API_URL}` + member.photo}
+                            src={`${import.meta.env.VITE_API_URL}` + member.photo}
                             alt={member.firstName}
                             className="h-10 w-10 rounded-full object-cover border"
                             onError={(e) => {
@@ -346,7 +346,7 @@ const Members = () => {
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <img
-                      src={`${process.env.REACT_APP_API_URL}` + member.photo}
+                      src={`${import.meta.env.VITE_API_URL}` + member.photo}
                       alt={member.firstName}
                       className="h-12 w-12 rounded-full object-cover border"
                       onError={(e) => {

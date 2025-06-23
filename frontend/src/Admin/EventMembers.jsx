@@ -19,7 +19,7 @@ const EventMembers = () => {
         const fetchRegistrations = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/event-registration-members`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events/event-registration-members`);
                 
                 if (!response.ok) {
                     throw new Error('Failed to fetch registrations');

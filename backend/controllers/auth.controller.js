@@ -238,6 +238,29 @@ const Login = async (req, res) => {
         .json({ message: "Please provide email and password" });
     }
 
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      // Compare password
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        process.env.ADMIN_PASSWORD
+      );
+      if (!isPasswordValid) {
+        return res.status(401).json({ message: "Invalid password" });
+      }
+      const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET, {
+        expiresIn: "24h",
+      });
+
+      res.status(200).json({
+        message: "Admin login successful",
+        isAdmin: true,
+        token,
+      });
+    }
+
     // Find user by email
     const user = await User.findOne({ email });
     if (!user) {

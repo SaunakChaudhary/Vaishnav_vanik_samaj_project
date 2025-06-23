@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { App as CapacitorApp } from '@capacitor/app';
+import { useNavigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom'
 import Homepage from './Pages/Homepage'
 import AdminDashboard from './Admin/AdminDashboard'
@@ -30,8 +32,29 @@ import UserMeetings from './Pages/Meetings'
 import Announcements from './Admin/Announcements'
 
 const App = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handler = CapacitorApp.addListener('backButton', () => {
+      // These paths should be your "home screens"
+      const exitRoutes = ['/', '/dashboard', '/admin/dashboard'];
+
+      const currentPath = window.location.pathname;
+
+      if (exitRoutes.includes(currentPath)) {
+        CapacitorApp.exitApp(); // Exit app if on one of these paths
+      } else {
+        navigate(-1); // Go back in history
+      }
+    });
+
+    return () => {
+      handler.remove(); // Clean up on unmount
+    };
+  }, [navigate]);
+
   return (
-    <>
+    <div>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
@@ -66,7 +89,7 @@ const App = () => {
 
 
       </Routes>
-    </>
+    </div>
   )
 }
 

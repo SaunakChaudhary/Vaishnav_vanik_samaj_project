@@ -16,7 +16,7 @@ const Team = () => {
     const fetchMembers = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
         const data = await response.json();
 
         if (response.ok) {
@@ -131,7 +131,7 @@ const Team = () => {
               >
                 <div className="relative mb-4">
                   <img
-                    src={`${process.env.REACT_APP_API_URL}` + member.photo}
+                    src={`${import.meta.env.VITE_API_URL}` + member.photo}
                     alt={`${member.firstName} ${member.lastName}`}
                     className="w-20 h-20 object-cover mx-auto rounded-full shadow-sm border-2 border-white"
                     onError={(e) => {

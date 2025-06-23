@@ -1,0 +1,5 @@
+{
+  "appId": "com.saunak.vaishnavsamaj",
+  "appName": "Vaishnav Vanik Samaj",
+  "webDir": "../frontend/dist"
+}

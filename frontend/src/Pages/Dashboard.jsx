@@ -410,7 +410,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/display`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/display`);
       const data = await response.json();
       if (response.ok) {
         setUsers(data.membersDetails)
@@ -441,7 +441,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/events/display`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/events/display`);
       const data = await response.json();
       if (response.ok) {
         setGalleryImages(data.events);
@@ -540,7 +540,7 @@ const Dashboard = () => {
       });
 
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/members/update-profile/${LoggedInUser._id}`,
+        `${import.meta.env.VITE_API_URL}/api/members/update-profile/${LoggedInUser._id}`,
         {
           method: 'PUT',
           body: formData,
@@ -605,7 +605,7 @@ const Dashboard = () => {
           <div className="flex flex-col items-center">
             <div className="relative mb-4">
               <img
-                src={selectedFile ? selectedFile : `${process.env.REACT_APP_API_URL}` + profileData.photo}
+                src={selectedFile ? selectedFile : `${import.meta.env.VITE_API_URL}` + profileData.photo}
                 alt="Profile"
                 className="w-32 h-32 sm:w-36 sm:h-36 rounded-full object-cover border-4 border-blue-100"
               />
@@ -846,7 +846,7 @@ const Dashboard = () => {
                   src={
                     member.photo instanceof File
                       ? URL.createObjectURL(member.photo)
-                      : `${process.env.REACT_APP_API_URL}` + member.photo || 'https://via.placeholder.com/100'
+                      : `${import.meta.env.VITE_API_URL}` + member.photo || 'https://via.placeholder.com/100'
                   }
                   alt={member.fullName}
                   className="w-20 h-20 rounded-xl object-cover border border-gray-100"
@@ -947,7 +947,7 @@ const Dashboard = () => {
             <div className="flex items-center mb-4">
               <div className="relative">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}` + user.photo}
+                  src={`${import.meta.env.VITE_API_URL}` + user.photo}
                   alt={user.firstName}
                   className="w-16 h-16 rounded-full object-cover"
                 />
@@ -1008,7 +1008,7 @@ const Dashboard = () => {
             {viewMode === 'grid' ? (
               <>
                 <img
-                  src={`${process.env.REACT_APP_API_URL}` + image.eventPhoto}
+                  src={`${import.meta.env.VITE_API_URL}` + image.eventPhoto}
                   alt={image.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
@@ -1021,7 +1021,7 @@ const Dashboard = () => {
             ) : (
               <div className="flex items-center w-full gap-4">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}` + image.eventPhoto}
+                  src={`${import.meta.env.VITE_API_URL}` + image.eventPhoto}
                   alt={image.eventName}
                   className="w-16 h-16 rounded-lg object-cover"
                 />
@@ -1058,7 +1058,7 @@ const Dashboard = () => {
                   detailedPhotos.images2.map((img, idx) =>
                     <img
                       key={idx}
-                      src={`${process.env.REACT_APP_API_URL}` + img}
+                      src={`${import.meta.env.VITE_API_URL}` + img}
                       alt={`Photo ${idx + 1}`}
                       className="w-full h-40 object-cover rounded-lg"
                     />
@@ -1112,7 +1112,7 @@ const Dashboard = () => {
       ) : (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
           {/* Mobile menu button */}
-          <div className="lg:hidden fixed top-0 z-40 flex items-center justify-between w-full p-5 bg-white">
+          <div className="lg:hidden fixed top-0 z-40 lg:p-5 pt-0 flex items-center justify-between w-full p-5 bg-white">
             <h2 className='font-bold text-2xl'>{!sidebarOpen && "Member Dashboard"}</h2>
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -1159,7 +1159,7 @@ const Dashboard = () => {
               <div className="p-4 border-t border-gray-200">
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                   <img
-                    src={`${process.env.REACT_APP_API_URL}` + profileData.photo}
+                    src={`${import.meta.env.VITE_API_URL}` + profileData.photo}
                     alt="Profile"
                     className="w-10 h-10 rounded-full object-cover"
                   />

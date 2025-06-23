@@ -52,7 +52,7 @@ const LoginForm = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
@@ -64,7 +64,11 @@ const LoginForm = () => {
                 toast.success(data.message || "Login successful!");
                 localStorage.setItem("token", data.token);
                 setLoggedInUser(data.user);
-                navigate("/");
+                if(data.isAdmin) {
+                    navigate("/admin/dashboard");
+                }else{
+                    navigate("/");
+                }
             } else {
                 if (data.pending) {
                     toast("Your request is pending. We will notify you when your membership is accepted.", {

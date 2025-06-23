@@ -12,7 +12,7 @@ const MembershipPayment = () => {
   const membershipFee = 5000;
   const getUserData = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/get-user`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/get-user`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ const MembershipPayment = () => {
   }
   const addToDatabase = async (amount, transactionId) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/members/${LoggedInUser._id}/membership-fees`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/members/${LoggedInUser._id}/membership-fees`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -68,7 +68,7 @@ const MembershipPayment = () => {
     try {
       const amount = 5000
       // Step 1: Create Razorpay Order
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-order`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ const MembershipPayment = () => {
         name: "Vaishnav Vanik Aamaaj",
         description: "",
         handler: async (response) => {
-          const verifyRes = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/verify-payment`, {
+          const verifyRes = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/verify-payment`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

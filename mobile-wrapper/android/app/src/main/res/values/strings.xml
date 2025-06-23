@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Vaishnav Vanik Samaj</string>
+    <string name="title_activity_main">Vaishnav Vanik Samaj</string>
+    <string name="package_name">com.saunak.vaishnavsamaj</string>
+    <string name="custom_url_scheme">com.saunak.vaishnavsamaj</string>
+</resources>

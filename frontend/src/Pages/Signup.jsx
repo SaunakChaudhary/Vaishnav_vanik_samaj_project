@@ -106,7 +106,7 @@ const SignupForm = () => {
 
         setIsLoading(true);
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/send-otp`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/send-otp`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -42,7 +42,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/contact/send-message`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact/send-message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

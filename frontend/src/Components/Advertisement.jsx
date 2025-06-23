@@ -17,7 +17,7 @@ function AdSlotBookingSystem() {
   const [showBookingModal, setShowBookingModal] = useState(false);
 
   const fetchSlots = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/available`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/advertisement/available`);
     const data = await res.json();
     setSlots(data);
   };
@@ -64,7 +64,7 @@ function AdSlotBookingSystem() {
   };
 
   const addToDatabase = async (side, transactionId) => {
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/book`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/advertisement/book`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ transactionId, side, toDate: bookingData.toDate, userId: bookingData.userId, amount: calculateTotal(), duration: bookingData.days }),
@@ -99,7 +99,7 @@ function AdSlotBookingSystem() {
     try {
       const amount = calculateTotal();
       // Step 1: Create Razorpay Order
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/create-order`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -118,7 +118,7 @@ function AdSlotBookingSystem() {
         name: "Vaishnav Vanik Aamaaj",
         description: "",
         handler: async (response) => {
-          const verifyRes = await fetch(`${process.env.REACT_APP_API_URL}/api/payment/verify-payment`, {
+          const verifyRes = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/verify-payment`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -176,7 +176,7 @@ function AdSlotBookingSystem() {
     formData.append('image', advImage);
     setIsLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/advertisement/add-advertise-image/${side}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/advertisement/add-advertise-image/${side}`, {
         method: 'PUT',
         body: formData
       });

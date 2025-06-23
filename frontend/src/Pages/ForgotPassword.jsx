@@ -12,11 +12,11 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleSubmit = async (e) => {
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
     e.preventDefault();
 
     if (!email.trim()) {
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/forgot-password`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

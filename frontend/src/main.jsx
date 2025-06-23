@@ -8,7 +8,7 @@ import UserContext from './Context/userContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <UserContext>
         <App />
         <Toaster />

@@ -20,7 +20,7 @@ const Donation = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/donation/get-donations`);
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/donation/get-donations`);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

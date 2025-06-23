@@ -28,15 +28,17 @@ const Navbar = () => {
   // Close mobile menu and dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.navbar-container')) {
+      const nav = document.querySelector('.navbar-container');
+      if (nav && !nav.contains(event.target)) {
         setIsOpen(false);
         setDropdownOpen(false);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleClickOutside, true);
+    return () => document.removeEventListener('click', handleClickOutside, true);
   }, []);
+
 
   const navLinkClass = ({ isActive }) =>
     `relative px-4 py-2 text-sm font-semibold transition-all duration-300 group ${isActive
@@ -52,7 +54,7 @@ const Navbar = () => {
 
   return (
     <div className='mb-15'>
-      <nav className={`navbar-container fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled
+      <nav className={`navbar-container fixed top-0 lg:p-0 left-0 right-0 z-40 transition-all duration-500 ${scrolled
         ? 'bg-white/95 backdrop-blur-lg shadow-xl border-b border-amber-100'
         : 'bg-white shadow-md'
         }`}>
@@ -123,7 +125,7 @@ const Navbar = () => {
                       className="flex items-center space-x-3 px-4 py-2.5 group"
                     >
                       <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-amber-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                        <img src={`${process.env.REACT_APP_API_URL}` + LoggedInUser.photo} alt="ProfilePhoto" className='rounded-full w-8 h-8' />
+                        <img src={`${import.meta.env.VITE_API_URL}` + LoggedInUser.photo} alt="ProfilePhoto" className='rounded-full w-8 h-8' />
                       </div>
                       <span className="font-medium text-gray-800 group-hover:text-amber-800">
                         {LoggedInUser.firstName} {LoggedInUser.lastName}
@@ -167,7 +169,10 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <div className="lg:hidden">
               <button
-                onClick={toggleMenu}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  toggleMenu();
+                }}
                 className="p-2 rounded-lg text-gray-600 hover:text-amber-700 hover:bg-amber-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50"
                 aria-label="Toggle menu"
               >
@@ -177,6 +182,7 @@ const Navbar = () => {
                   <Menu className="w-6 h-6 transition-transform duration-300" />
                 )}
               </button>
+
             </div>
           </div>
 
