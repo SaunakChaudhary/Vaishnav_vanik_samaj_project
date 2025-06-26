@@ -252,7 +252,7 @@ const Login = async (req, res) => {
         expiresIn: "24h",
       });
 
-      res.status(200).json({
+      return res.status(200).json({
         message: "Admin login successful",
         isAdmin: true,
         token,
@@ -284,7 +284,7 @@ const Login = async (req, res) => {
       expiresIn: "24h",
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Login successful",
       token,
       user,
