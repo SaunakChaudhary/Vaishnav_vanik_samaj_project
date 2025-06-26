@@ -64,9 +64,11 @@ const LoginForm = () => {
                 toast.success(data.message || "Login successful!");
                 localStorage.setItem("token", data.token);
                 setLoggedInUser(data.user);
-                if(data.isAdmin) {
+                if (data.isAdmin) {
+                    localStorage.setItem('adminToken', data.token);
+                    setLoginSuccess(true);
                     navigate("/admin/dashboard");
-                }else{
+                } else {
                     navigate("/");
                 }
             } else {
